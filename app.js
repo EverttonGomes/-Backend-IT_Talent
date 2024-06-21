@@ -5,6 +5,7 @@ import { getAluno, getAlunos, createAluno } from './database.js';
 import dotenv from 'dotenv';
 
 const app = express();
+const APP_PORT=process.env.APP_PORT;
 
 app.use(bodyParser.json());
 app.use(cors());

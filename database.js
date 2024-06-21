@@ -11,6 +11,18 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
 }).promise();
 
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.error('Erro ao conectar-se ao banco de dados:', err.stack);
+        return;
+    }
+    console.log('Conexão bem sucedida ao banco de dados MySQL');
+
+    // Liberar a conexão após a verificação
+    connection.release();
+});
+
+
 export async function getAlunos(){
     const result = await pool.query(`SELECT * FROM ALUNOS;`);
     return result[0];
